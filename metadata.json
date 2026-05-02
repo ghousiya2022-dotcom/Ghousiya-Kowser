@@ -1,0 +1,6 @@
+{
+  "name": "MedVault",
+  "description": "A secure healthcare platform for patients and doctors with specialized onboarding and personalized dashboards.",
+  "requestFramePermissions": ["camera"],
+  "majorCapabilities": []
+}

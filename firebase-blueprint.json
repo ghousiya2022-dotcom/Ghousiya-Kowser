@@ -1,0 +1,55 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "User Profile",
+      "description": "Base profile information for all users",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string" },
+        "displayName": { "type": "string" },
+        "role": { "type": "string", "enum": ["patient", "doctor"] },
+        "onboarded": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "email", "role", "onboarded"]
+    },
+    "PatientData": {
+      "title": "Patient Specific Data",
+      "description": "Specific details for patient users",
+      "type": "object",
+      "properties": {
+        "bloodGroup": { "type": "string" },
+        "gender": { "type": "string" },
+        "age": { "type": "number" },
+        "address": { "type": "string" }
+      },
+      "required": ["bloodGroup", "gender", "age", "address"]
+    },
+    "DoctorData": {
+      "title": "Doctor Specific Data",
+      "description": "Specific details for doctor users",
+      "type": "object",
+      "properties": {
+        "degree": { "type": "string" },
+        "address": { "type": "string" },
+        "verified": { "type": "boolean" }
+      },
+      "required": ["degree", "address"]
+    }
+  },
+  "firestore": {
+    "users/{userId}": {
+      "schema": "UserProfile",
+      "description": "The main user document"
+    },
+    "users/{userId}/patientDetails/basic": {
+      "schema": "PatientData",
+      "description": "Private patient details"
+    },
+    "users/{userId}/doctorDetails/basic": {
+      "schema": "DoctorData",
+      "description": "Private doctor details"
+    }
+  }
+}
